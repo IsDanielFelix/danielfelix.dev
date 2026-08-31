@@ -1,0 +1,15 @@
+:host {
+  display: block;
+}
+
+.hero-glow {
+  position: absolute;
+  top: -14rem;
+  right: -12rem;
+  width: 34rem;
+  height: 34rem;
+  border-radius: 9999px;
+  background: var(--brand-soft);
+  filter: blur(90px);
+  pointer-events: none;
+}
