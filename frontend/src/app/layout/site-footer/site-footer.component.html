@@ -1,0 +1,43 @@
+<footer class="bg-ink text-paper">
+  <div class="mx-auto max-w-6xl px-6 py-14">
+    <div class="grid gap-10 lg:grid-cols-[1.2fr_1fr_0.9fr]">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-white/45">{{ profile.websiteLabel }}</p>
+        <p class="mt-3 font-display text-4xl">{{ profile.name }}</p>
+        <p class="mt-3 max-w-sm text-sm leading-relaxed text-white/65">
+          {{ profile.role }}.
+        </p>
+      </div>
+
+      <nav aria-label="Apartados">
+        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-white/45">Apartados</p>
+        <ul class="mt-4 grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
+          @for (item of navigation; track item.fragment) {
+            <li>
+              <a class="text-white/80 hover:text-white" routerLink="/" [fragment]="item.fragment">{{ item.label }}</a>
+            </li>
+          }
+        </ul>
+      </nav>
+
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-white/45">Contacto</p>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a class="text-white/80 hover:text-white" [href]="'mailto:' + profile.email">{{ profile.email }}</a></li>
+          <li><a class="text-white/80 hover:text-white" [href]="profile.phoneHref">{{ profile.phone }}</a></li>
+          <li><a class="text-white/80 hover:text-white" [href]="profile.cvPath" download>Descargar CV</a></li>
+          @for (link of socials; track link.href) {
+            <li>
+              <a class="text-white/80 hover:text-white" [href]="link.href" target="_blank" rel="noopener noreferrer">{{ link.label }}</a>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 flex flex-col gap-2 border-t border-white/10 pt-5 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
+      <p>© {{ year }} {{ profile.name }}</p>
+      <p>Este sitio es {{ profile.websiteLabel }}</p>
+    </div>
+  </div>
+</footer>

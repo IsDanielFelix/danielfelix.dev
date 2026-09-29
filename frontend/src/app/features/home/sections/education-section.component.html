@@ -1,0 +1,14 @@
+<section id="formacion" class="bg-mist">
+  <div class="mx-auto max-w-6xl px-6 py-24">
+    <app-section-heading index="05" title="Formación" />
+    <div class="grid gap-5 md:grid-cols-2">
+      @for (item of education; track item.title) {
+        <article class="rounded-[1.5rem] border border-line bg-paper p-7">
+          <p class="text-sm font-medium text-steel">{{ item.period }}</p>
+          <h3 class="mt-3 font-display text-3xl leading-tight">{{ item.title }}</h3>
+          <p class="mt-3 text-sm text-muted">{{ item.institution }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>

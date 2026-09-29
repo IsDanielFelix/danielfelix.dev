@@ -1,0 +1,59 @@
+@if (project(); as item) {
+  <article class="bg-mist pt-28">
+    <div class="mx-auto max-w-3xl px-6 pb-24">
+      <a class="text-sm font-medium text-steel" routerLink="/" fragment="proyectos">← Proyectos</a>
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-steel">{{ item.kind }}</p>
+        @if (item.here) {
+          <span class="rounded-full bg-ink px-3 py-1 text-xs font-semibold text-paper">Estás aquí</span>
+        }
+      </div>
+      <h1 class="mt-3 font-display text-5xl tracking-tight sm:text-6xl">{{ item.name }}</h1>
+      <p class="mt-6 text-lg leading-relaxed text-navy">{{ item.summary }}</p>
+
+      <h2 class="mt-10 font-display text-3xl">Qué incluye</h2>
+      <ul class="mt-4 space-y-3 text-navy">
+        @for (point of item.highlights; track point) {
+          <li class="flex gap-3">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-steel"></span>
+            <span>{{ point }}</span>
+          </li>
+        }
+      </ul>
+
+      <h2 class="mt-10 font-display text-3xl">Stack</h2>
+      <div class="mt-4 flex flex-wrap gap-2">
+        @for (tech of item.stack; track tech) {
+          <app-tag>{{ tech }}</app-tag>
+        }
+      </div>
+
+      <div class="mt-10 flex flex-wrap gap-3">
+        @if (item.url) {
+          <a class="rounded-full bg-ink px-5 py-3 text-sm font-semibold text-paper" [href]="item.url" target="_blank" rel="noopener noreferrer">
+            Visitar {{ item.urlLabel }}
+          </a>
+        }
+        <a class="rounded-full border border-line bg-paper px-5 py-3 text-sm font-semibold text-ink" routerLink="/" fragment="contacto">
+          Hablar del proyecto
+        </a>
+      </div>
+
+      @if (others().length) {
+        <div class="mt-16 border-t border-line pt-8">
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-steel">También</p>
+          @for (other of others(); track other.slug) {
+            <a class="mt-3 block font-display text-3xl" [routerLink]="['/proyectos', other.slug]">{{ other.name }}</a>
+          }
+        </div>
+      }
+    </div>
+  </article>
+} @else {
+  <section class="bg-mist px-6 pb-24 pt-36">
+    <div class="mx-auto max-w-3xl">
+      <h1 class="font-display text-5xl">No encuentro ese proyecto</h1>
+      <a class="mt-6 inline-block text-sm font-semibold text-steel" routerLink="/" fragment="proyectos">Volver a proyectos</a>
+    </div>
+  </section>
+}

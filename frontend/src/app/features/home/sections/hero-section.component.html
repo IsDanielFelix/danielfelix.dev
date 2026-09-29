@@ -1,0 +1,74 @@
+<section id="inicio" class="relative isolate overflow-hidden bg-ink text-paper">
+  <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,84,117,0.7),transparent_42%)]"></div>
+  <div
+    class="pointer-events-none absolute inset-0 opacity-20"
+    style="background-image: linear-gradient(rgba(255,255,255,.16) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.16) 1px, transparent 1px); background-size: 84px 84px;"
+  ></div>
+
+  <div class="relative mx-auto grid min-h-[100svh] max-w-6xl items-end gap-12 px-6 pb-16 pt-28 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+    <div>
+      <p class="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1 text-xs tracking-wide text-white/80">
+        <span class="h-1.5 w-1.5 rounded-full bg-white"></span>
+        {{ profile.availability }}
+      </p>
+      <p class="mt-8 text-sm font-medium uppercase tracking-[0.22em] text-white/55">
+        {{ profile.role }}
+      </p>
+      <h1 class="mt-3 max-w-xl font-display text-5xl leading-[0.95] tracking-tight sm:text-7xl">
+        {{ profile.name }}
+      </h1>
+      <p class="mt-5 max-w-xl font-display text-3xl text-white/90 sm:text-4xl">
+        {{ profile.headline }}
+      </p>
+      <p class="mt-4 max-w-md text-base leading-relaxed text-white/70">
+        {{ profile.pitch }}
+      </p>
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <a routerLink="/" fragment="proyectos" class="rounded-full bg-paper px-5 py-3 text-sm font-semibold text-ink transition hover:bg-soft">
+          Ver proyectos
+        </a>
+        <a routerLink="/" fragment="contacto" class="rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-paper transition hover:bg-white/10">
+          Contactar
+        </a>
+        <a class="px-2 text-sm text-white/70 underline decoration-white/30 underline-offset-4" [href]="profile.cvPath" download>
+          Descargar CV
+        </a>
+      </div>
+    </div>
+
+    <aside class="rounded-[1.75rem] border border-white/10 bg-white/5 p-6 backdrop-blur-md sm:p-8">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-white/50">Ficha</p>
+      <dl class="mt-6 space-y-5 text-sm">
+        <div>
+          <dt class="text-white/45">Ubicación</dt>
+          <dd class="mt-1">{{ profile.location }}, {{ profile.postalCode }}</dd>
+        </div>
+        <div>
+          <dt class="text-white/45">Correo</dt>
+          <dd class="mt-1">
+            <a class="underline decoration-white/30 underline-offset-4" [href]="'mailto:' + profile.email">{{ profile.email }}</a>
+          </dd>
+        </div>
+        <div>
+          <dt class="text-white/45">Teléfono</dt>
+          <dd class="mt-1">
+            <a class="underline decoration-white/30 underline-offset-4" [href]="profile.phoneHref">{{ profile.phone }}</a>
+          </dd>
+        </div>
+      </dl>
+      <div class="mt-8 flex flex-wrap gap-2">
+        @for (skill of primaryStack; track skill) {
+          <app-tag tone="dark">{{ skill }}</app-tag>
+        }
+      </div>
+      <dl class="mt-8 grid grid-cols-3 gap-3 border-t border-white/10 pt-5">
+        @for (item of highlights; track item.value) {
+          <div>
+            <dt class="font-display text-xl">{{ item.value }}</dt>
+            <dd class="mt-1 text-[11px] leading-snug text-white/55">{{ item.label }}</dd>
+          </div>
+        }
+      </dl>
+    </aside>
+  </div>
+</section>

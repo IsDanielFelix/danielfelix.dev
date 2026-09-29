@@ -1,0 +1,23 @@
+<section id="experiencia" class="bg-paper">
+  <div class="mx-auto max-w-6xl px-6 py-24">
+    <app-section-heading index="04" title="Experiencia" />
+    <ol class="max-w-3xl space-y-10 border-l border-line pl-8">
+      @for (job of experience; track job.company) {
+        <li class="relative">
+          <span class="absolute -left-[2.4rem] top-1.5 h-3 w-3 rounded-full border-2 border-paper bg-steel"></span>
+          <p class="text-sm font-medium text-steel">{{ job.period }}</p>
+          <h3 class="mt-1 font-display text-3xl">{{ job.role }}</h3>
+          <p class="mt-1 text-sm text-muted">{{ job.company }}</p>
+          <ul class="mt-5 space-y-2 text-sm leading-relaxed text-navy">
+            @for (bullet of job.bullets; track bullet) {
+              <li class="flex gap-3">
+                <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-steel"></span>
+                <span>{{ bullet }}</span>
+              </li>
+            }
+          </ul>
+        </li>
+      }
+    </ol>
+  </div>
+</section>

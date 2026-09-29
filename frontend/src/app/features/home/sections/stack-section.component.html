@@ -1,0 +1,23 @@
+<section id="stack" class="bg-paper">
+  <div class="mx-auto max-w-6xl px-6 py-24">
+    <app-section-heading index="02" title="Stack" kicker="Lo que aparece en el currículum, sin inflar la lista." />
+    <div class="grid gap-5 lg:grid-cols-3">
+      @for (group of groups; track group.id) {
+        <article class="rounded-[1.5rem] border border-line bg-mist p-6 transition hover:border-steel">
+          <h3 class="font-display text-3xl text-ink">{{ group.title }}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-muted">{{ group.description }}</p>
+          <ul class="mt-6 space-y-3">
+            @for (item of group.items; track item.name) {
+              <li class="flex items-center justify-between gap-3 border-b border-line/80 pb-3 text-sm last:border-0">
+                <span>{{ item.name }}</span>
+                @if (item.note) {
+                  <span class="text-xs uppercase tracking-wide text-steel">{{ item.note }}</span>
+                }
+              </li>
+            }
+          </ul>
+        </article>
+      }
+    </div>
+  </div>
+</section>

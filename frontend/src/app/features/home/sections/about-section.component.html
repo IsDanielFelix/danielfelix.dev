@@ -1,0 +1,35 @@
+<section id="sobre-mi" class="bg-mist">
+  <div class="mx-auto max-w-6xl px-6 py-24">
+    <div class="grid gap-12 lg:grid-cols-[1.3fr_0.7fr]">
+      <div>
+        <app-section-heading index="01" title="Sobre mí" kicker="Lo que puedo aportar desde el primer día." />
+        <p class="max-w-2xl text-lg leading-relaxed text-navy">{{ profile.summary }}</p>
+      </div>
+      <aside class="h-fit rounded-[1.5rem] border border-line bg-paper p-6 shadow-card">
+        <h3 class="text-sm font-semibold uppercase tracking-[0.16em] text-steel">Idiomas</h3>
+        <ul class="mt-6 space-y-5">
+          @for (language of languages; track language.name) {
+            <li>
+              <div class="flex items-baseline justify-between gap-4 text-sm">
+                <span class="font-medium">{{ language.name }}</span>
+                <span class="text-muted">{{ language.level }}</span>
+              </div>
+              <div class="mt-2 h-1.5 overflow-hidden rounded-full bg-soft" aria-hidden="true">
+                <div class="h-full rounded-full bg-steel" [style.width.%]="language.width"></div>
+              </div>
+            </li>
+          }
+        </ul>
+      </aside>
+    </div>
+
+    <div class="mt-10 grid gap-4 md:grid-cols-3">
+      @for (item of strengths; track item.title) {
+        <article class="rounded-[1.4rem] border border-line bg-paper p-6">
+          <h3 class="font-display text-2xl">{{ item.title }}</h3>
+          <p class="mt-3 text-sm leading-relaxed text-muted">{{ item.text }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
